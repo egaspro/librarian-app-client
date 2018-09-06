@@ -19,7 +19,8 @@ const userValidateEpic = action$ =>
             map(response => {
               console.log(response.response.userId !== -1);
               return actionCreators.validateUserRes({
-                isValid: response.response.userId !== -1
+                isValid: response.response.userId !== -1,
+                id: response.response.userId
               });
             })
           );

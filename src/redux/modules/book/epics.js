@@ -20,12 +20,10 @@ const allBooksEpic = (action$) =>
 const takeBookEpic = (action$) => 
     action$.pipe(
         ofType(types.TAKE_BOOK_REQ),
-        delay(2000), //Remove after endpoint implementation
-        mergeMap((action) =>    
-            of(actionCreators.takeBookResp())          
-            // ajax.getJSON(`http://localhost:3000/api/book/take?${action.payload.data}`).pipe(
-            //     map(response => actionCreators.takeBookResp())
-            // )             
+        mergeMap((action) =>             
+            ajax.getJSON(`http://localhost:3000/api/transaction/takeBook`, {userId: action.payload.data }).pipe(
+                map(response => actionCreators.takeBookResp())
+            )             
         )
     );
 
@@ -42,12 +40,10 @@ const takenBooksEpics = (action$) =>
 const leaveBookEpic = (action$) => 
     action$.pipe(
         ofType(types.LEAVE_BOOK_REQ),
-        delay(2000), //Remove after endpoint implementation
-        mergeMap((action) =>        
-            of(actionCreators.leaveBookResp())       
-            // ajax.getJSON(`http://localhost:3000/api/book/leave?${action.payload.data}`).pipe(
-            //     map(response => actionCreators.leaveBookResp())
-            // )           
+        mergeMap((action) =>             
+            ajax.post(`http://localhost:3000/api/transaction/returnBook`, { bookId: action.payload.data }).pipe(
+                map(response => actionCreators.leaveBookResp())
+            )           
         )
     );
 
