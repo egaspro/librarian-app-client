@@ -48,6 +48,7 @@ class Leave extends Component {
             style={selectStyles}
             onChange={this.changeHandler}
           >
+            <option key={-1} value="" disabled="true" selected="true">Please select a book</option>
             {
               takenBooks && takenBooks.map((book, index) =>
                 <option value={book.bookId}>{book.title} </option>

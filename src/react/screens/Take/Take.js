@@ -59,6 +59,7 @@ class Take extends Component {
             style={selectStyles}
             onChange={this.changeHandler}
           >
+		  	<option key={-1} value="" disabled="true" selected="true">Please select a book</option>
 		  {
 			books && books.map((book, index) =>
 			  <option value={book.bookId} disabled={book.userId == null}>{book.title} {book.userId !== null? ` (${book.firstName} ${book.lastName})` : ''}</option>
