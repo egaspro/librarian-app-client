@@ -1,14 +1,32 @@
 import { of } from "rxjs";
-import { mergeMap, delay } from "rxjs/operators";
+import { mergeMap, delay, map } from "rxjs/operators";
 import { ofType } from "redux-observable";
 import { ajax } from "rxjs/ajax";
 import { types, actionCreators } from "./";
+
+const apiUrl = "http://localhost:5000/api/";
 
 const userValidateEpic = action$ =>
   action$.pipe(
     ofType(types.VALIDATE_USER_REQ),
     delay(2000),
-    mergeMap(action => of(actionCreators.validateUserRes({ valid: true })))
+    mergeMap(
+      action => {
+        console.log(action);
+        return ajax
+          .post(apiUrl + "user/recognize", { image: action.payload.data })
+          .pipe(
+            map(response => {
+              console.log(response.response.userId !== -1);
+              return actionCreators.validateUserRes({
+                isValid: response.response.userId !== -1
+              });
+            })
+          );
+      }
+
+      // of(actionCreators.validateUserRes({valid: true}))
+    )
   );
 
 const takePictureEpic = action$ =>
@@ -27,7 +45,7 @@ const getUserEpic = action$ =>
     ofType(types.GET_USER_REQ),
     mergeMap(action =>
       ajax
-        .getJSON(`http://localhost:3000/api/user/${action.payload.data}`)
+        .getJSON(`${apiUrl}user/${action.payload.data}`)
         .pipe(map(response => actionCreators.getUserRes(response)))
     )
   );

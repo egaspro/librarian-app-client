@@ -48,7 +48,7 @@ export default function reducer(state = initialState, action) {
         isError: null,
         isValidated: true,
         userId: action.payload.data.id,
-        isLibraryCustomer: action.payload.data
+        isLibraryCustomer: action.payload.data.isValid
       };
     case types.GET_USER_REQ:
       return {
