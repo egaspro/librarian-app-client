@@ -5,7 +5,8 @@ const initialState = {
     error: null,
     allBooks: [],
     inProgress: false,
-    bookIsLeft: false
+    bookIsLeft: false,
+    bookIsTaken: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -37,7 +38,8 @@ export default function reducer(state = initialState, action) {
         case types.TAKE_BOOK_RES:
 			return {
 				...state,
-                inProgress: false
+                inProgress: false,
+                bookIsTaken: true
             };
         case types.TAKE_BOOK_ERR:
 			return {

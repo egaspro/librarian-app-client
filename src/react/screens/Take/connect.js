@@ -5,15 +5,18 @@ import { actionCreators as bookActionCreators } from "redux/modules/book";
 import Take from "./Take";
 
 const mapStateToProps = state => ({
-  // isLoading: state.example.isLoading,
-  // question: selectors.getQuestion(state),
-  // task: task.selectors.getTask(state)
+  userId: state.user.userId,
+  firstName: state.user.firstName,
+  lastName: state.user.lastName,
+  books: state.books.allBooks
 });
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      getBooks: bookActionCreators.allBooksReq
+      getUser: userActionCreators.getUserReq,
+      getBooks: bookActionCreators.allBooksReq,
+      takeBook: bookActionCreators.takeBookReq
     },
     dispatch
   );

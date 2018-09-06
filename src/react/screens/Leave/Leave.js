@@ -35,12 +35,12 @@ class Leave extends Component {
 
   render() {
     const { success } = this.state;
-    const { takenBooks } = this.props;
+    const { takenBooks, firstName, lastName } = this.props;
 
     return (
       <div>
         <img src="./Welcome.jpeg" width="200" height="200" />
-        <h1> Welcome Petras Blieka </h1>
+        <h1> Welcome {firstName} {lastName} </h1>
         <h2> Please select book(s) to leave </h2>
         <form action="" onSubmit={this.submitHandler}>
           <select

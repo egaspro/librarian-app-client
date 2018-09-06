@@ -7,7 +7,16 @@ class Take extends Component {
   };
 
   componentDidMount() {
-    this.props.getBooks();
+	this.props.getUser(this.props.userId);
+    this.props.getBooks(this.props.userId);
+  }
+
+  componentDidUpdate(){
+    if (this.props.bookIsTaken){
+      setTimeout(() => {
+        this.props.history.push("/");
+      }, 1000);
+    }
   }
 
   changeHandler = e => {
@@ -20,24 +29,28 @@ class Take extends Component {
     const { selectedBook } = this.state;
 
     if (selectedBook) {
-      console.log(selectedBook);
-      this.setState({ success: true }, () => {
-        setTimeout(() => {
-          this.props.history.push("/");
-        }, 1000);
-      });
+      this.props.takeBook(selectedBook);
     }
   };
 
-  render() {
-    //const { what, from, to, floor } = this.props.task.data;
-    const { success } = this.state;
+  render() {    
+	const { success } = this.state;
+	const { books, firstName, lastName } = this.props;
 
     return (
       <div>
-		<img src="./Welcome.jpeg" width="200" height="200" />
+		{ books.length === 0 &&
+			<img src="./Welcome.jpeg" width="200" height="200" />
+		}
+		{ books.length > 0 &&
 		<img src="./YouHaveBooks.jpeg" width="200" height="200" />
-        <h1> Welcome Petras Blieka </h1>
+		}
+		{ books.length === 0 &&
+        <h1> Welcome {firstName} {lastName} </h1>
+		}
+		{ books.length > 0 &&
+			<h1> {firstName} {lastName}, you have {books.length} unreturned books !! </h1>
+		}
         <h2> Please select book(s) to take </h2>
         <form action="" onSubmit={this.submitHandler}>
           <select
@@ -45,15 +58,11 @@ class Take extends Component {
             style={selectStyles}
             onChange={this.changeHandler}
           >
-            <option value="1">Some book title</option>
-            <option value="2">Some book title</option>
-            <option value="3">Some book title</option>
-            <option value="4">Some book title</option>
-            <option value="5">Some book title</option>
-            <option value="6">Some book title</option>
-            <option value="7">Some book title</option>
-            <option value="8">Some book title</option>
-            <option value="9">Some book title</option>
+		  {
+			books && books.map((book, index) =>
+			  <option value={book.bookId} disabled={book.userId == null}>{book.title} {book.userId !== null? ` (${book.firstName} ${book.lastName})` : ''}</option>
+			)
+		  }            
           </select>
           <button type="submit" className="btn-blue">
             submit
