@@ -1,1 +1,1 @@
-export { default } from './Leave.js';
+export { default } from './connect.js';

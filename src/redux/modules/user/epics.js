@@ -9,7 +9,7 @@ const apiUrl = "http://localhost:5000/api/";
 const userValidateEpic = action$ =>
   action$.pipe(
     ofType(types.VALIDATE_USER_REQ),
-    delay(2000),
+    delay(0),
     mergeMap(
       action => {
         console.log(action);

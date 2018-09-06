@@ -14,15 +14,15 @@ export const types = {
 };
 
 const allBooksReq = () => ({ type: types.ALL_BOOKS_REQ });
-const allBooksResp = () => ({ type: types.ALL_BOOKS_RES });
+const allBooksResp = (data) => ({ type: types.ALL_BOOKS_RES, payload: {data} });
 const allBooksErr = () => ({ type: types.ALL_BOOKS_ERR });
-const takeBookReq = () => ({ type: types.TAKE_BOOK_REQ });
+const takeBookReq = (data) => ({ type: types.TAKE_BOOK_REQ, payload: {data} });
 const takeBookResp = () => ({ type: types.TAKE_BOOK_RES });
 const takeBookErr = () => ({ type: types.TAKE_BOOK_ERR });
-const takenBooksReq = () => ({ type: types.TAKEN_BOOKS_REQ });
-const takenBooksResp = () => ({ type: types.TAKEN_BOOKS_RES });
+const takenBooksReq = (data) => ({ type: types.TAKEN_BOOKS_REQ, payload: {data} });
+const takenBooksResp = (data) => ({ type: types.TAKEN_BOOKS_RES, payload: {data} });
 const takenBooksErr = () => ({ type: types.TAKEN_BOOKS_ERR });
-const leaveBookReq = () => ({ type: types.LEAVE_BOOK_REQ });
+const leaveBookReq = (data) => ({ type: types.LEAVE_BOOK_REQ, payload: {data} });
 const leaveBookResp = () => ({ type: types.LEAVE_BOOK_RES });
 const leaveBookErr = () => ({ type: types.LEAVE_BOOK_ERR });
 

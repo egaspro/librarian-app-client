@@ -16,6 +16,7 @@ export default function reducer(state = initialState, action) {
 				inProgress: true
             };
         case types.ALL_BOOKS_RES:
+            console.log(action)
 			return {
 				...state,
                 allBooks: action.payload.data,

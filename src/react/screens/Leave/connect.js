@@ -1,7 +1,7 @@
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { userActionCreators } from "redux/modules/user";
-import { bookActionCreators } from "redux/modules/book";
+import { actionCreators as userActionCreators } from "redux/modules/user";
+import { actionCreators as bookActionCreators } from "redux/modules/book";
 import Leave from "./Leave";
 
 const mapStateToProps = state => ({

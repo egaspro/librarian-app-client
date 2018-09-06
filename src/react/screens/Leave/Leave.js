@@ -49,7 +49,7 @@ class Leave extends Component {
             onChange={this.changeHandler}
           >
             {
-              takenBooks.map((book, index) =>
+              takenBooks && takenBooks.map((book, index) =>
                 <option value={book.bookId}>{book.title} </option>
               )
             }

@@ -1,7 +1,7 @@
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { userActionCreators } from "redux/modules/user";
-import { bookActionCreators } from "redux/modules/book";
+import { actionCreators as userActionCreators } from "redux/modules/user";
+import { actionCreators as bookActionCreators } from "redux/modules/book";
 import Take from "./Take";
 
 const mapStateToProps = state => ({
@@ -10,13 +10,14 @@ const mapStateToProps = state => ({
   // task: task.selectors.getTask(state)
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
     {
       getBooks: bookActionCreators.allBooksReq
     },
     dispatch
   );
+}
 
 export default connect(
   mapStateToProps,

@@ -7,11 +7,13 @@ import {
 	actionCreators
 } from './';
 
+const apiUrl = "http://localhost:5000/api/";
+
 const allBooksEpic = (action$) => 
     action$.pipe(
         ofType(types.ALL_BOOKS_REQ),
         mergeMap((action) =>     
-            ajax.getJSON(`http://localhost:3000/api/book`).pipe(
+            ajax.getJSON(`${apiUrl}book`).pipe(
                 map(response => actionCreators.allBooksResp(response))
             )                           
         )
@@ -21,7 +23,7 @@ const takeBookEpic = (action$) =>
     action$.pipe(
         ofType(types.TAKE_BOOK_REQ),
         mergeMap((action) =>             
-            ajax.getJSON(`http://localhost:3000/api/transaction/takeBook`, {userId: action.payload.data }).pipe(
+            ajax.getJSON(`${apiUrl}transaction/takeBook`, {userId: action.payload.data }).pipe(
                 map(response => actionCreators.takeBookResp())
             )             
         )
@@ -31,7 +33,7 @@ const takenBooksEpics = (action$) =>
     action$.pipe(
         ofType(types.TAKEN_BOOKS_REQ),
         mergeMap((action) =>            
-            ajax.getJSON(`http://localhost:3000/api/user/${action.payload.data}/books`).pipe(
+            ajax.getJSON(`${apiUrl}user/${action.payload.data}/books`).pipe(
                 map(response => actionCreators.takenBooksResp(response))
             )        
         )
@@ -41,7 +43,7 @@ const leaveBookEpic = (action$) =>
     action$.pipe(
         ofType(types.LEAVE_BOOK_REQ),
         mergeMap((action) =>             
-            ajax.post(`http://localhost:3000/api/transaction/returnBook`, { bookId: action.payload.data }).pipe(
+            ajax.post(`${apiUrl}transaction/returnBook`, { bookId: action.payload.data }).pipe(
                 map(response => actionCreators.leaveBookResp())
             )           
         )
