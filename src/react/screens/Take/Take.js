@@ -36,20 +36,21 @@ class Take extends Component {
   render() {    
 	const { success } = this.state;
 	const { books, firstName, lastName } = this.props;
+	const userBooksCount = books.filter(book => book.userId == this.props.userId).length;
 
     return (
       <div>
-		{ books.length === 0 &&
+		{ userBooksCount === 0 &&
 			<img src="./Welcome.jpeg" width="200" height="200" />
 		}
-		{ books.length > 0 &&
+		{ userBooksCount > 0 &&
 		<img src="./YouHaveBooks.jpeg" width="200" height="200" />
 		}
-		{ books.length === 0 &&
+		{ userBooksCount === 0 &&
         <h1> Welcome {firstName} {lastName} </h1>
 		}
-		{ books.length > 0 &&
-			<h1> {firstName} {lastName}, you have {books.length} unreturned books !! </h1>
+		{ userBooksCount > 0 &&
+			<h1> {firstName} {lastName}, you have {userBooksCount} unreturned books !! </h1>
 		}
         <h2> Please select book(s) to take </h2>
         <form action="" onSubmit={this.submitHandler}>

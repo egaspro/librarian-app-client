@@ -39,7 +39,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         base64: action.payload.data,
         isValidating: true,
-        recognitionTimerDone: true
+        recognitionTimerDone: false
       };
     case types.VALIDATE_USER_RES:
       return {

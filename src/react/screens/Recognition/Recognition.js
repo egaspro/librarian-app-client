@@ -15,13 +15,10 @@ class Recognition extends Component {
     }
     
     componentWillReceiveProps(nextProps) {
-        if (nextProps.recognitionTimerDone && !nextProps.isValidating) {
+        if (nextProps.recognitionTimerDone) {
             console.log(nextProps)
             this.props.validateUserReq(this.webcam.getScreenshot());
-            this.setState(() => ({ takingPhoto : true }));
-            setTimeout(() => {
-                this.setState(() => ({ takingPhoto : false }));
-            }, 300);
+            document.getElementById("webCamCont").setAttribute("class", "snapshotEffect");
         }
         if (nextProps.isValidated) {
             if (nextProps.isLibraryCustomer) 
@@ -52,7 +49,7 @@ class Recognition extends Component {
                 <img src="./WhoYouAre.jpeg" width="150" height="150" />
 				<h1> Who the hell are you ?!?!</h1>
                 <h3>We will take your photo in: {this.props.recognitionTimerValue}</h3>
-                <div style={this.state.takingPhoto ? { transition: "ease .3s", opacity: .3 } : {}}>
+                <div id="webCamCont">
                 <Webcam         
                     audio={false}
                     height={250}
