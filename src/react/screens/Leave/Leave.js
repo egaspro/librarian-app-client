@@ -6,9 +6,17 @@ class Leave extends Component {
     selectedBook: null
   };
 
-  componentWillMount() {
-    //this.props.getExampleReq();
-    //this.props.getTaskReq();
+  componentDidMount() {
+    this.props.getUser(this.props.userId);
+    this.props.getTakenBooks(this.props.userId);
+  }
+
+  componentDidUpdate(){
+    if (this.props.bookIsLeft){
+      setTimeout(() => {
+        this.props.history.push("/");
+      }, 1000);
+    }
   }
 
   changeHandler = e => {
@@ -21,18 +29,13 @@ class Leave extends Component {
     const { selectedBook } = this.state;
 
     if (selectedBook) {
-      console.log(selectedBook);
-      this.setState({ success: true }, () => {
-        setTimeout(() => {
-          this.props.history.push("/");
-        }, 1000);
-      });
+      this.props.leaveBook(selectedBook);
     }
   };
 
   render() {
-    //const { what, from, to, floor } = this.props.task.data;
     const { success } = this.state;
+    const { takenBooks } = this.props;
 
     return (
       <div>
@@ -45,15 +48,11 @@ class Leave extends Component {
             style={selectStyles}
             onChange={this.changeHandler}
           >
-            <option value="1">Some book title</option>
-            <option value="2">Some book title</option>
-            <option value="3">Some book title</option>
-            <option value="4">Some book title</option>
-            <option value="5">Some book title</option>
-            <option value="6">Some book title</option>
-            <option value="7">Some book title</option>
-            <option value="8">Some book title</option>
-            <option value="9">Some book title</option>
+            {
+              takenBooks.map((book, index) =>
+                <option value={book.bookId}>{book.title} </option>
+              )
+            }
           </select>
           <button type="submit" className="btn-blue">
             submit
