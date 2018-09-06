@@ -20,16 +20,22 @@ class Take extends Component {
   }
 
   changeHandler = e => {
+    
     const { value } = e.target;
+    console.log(value);
     this.setState({ selectedBook: value });
   };
 
   submitHandler = e => {
     e.preventDefault();
     const { selectedBook } = this.state;
-
+    console.log('aaa')
     if (selectedBook) {
-      this.props.takeBook(selectedBook);
+      
+      this.props.takeBook({
+        userId: this.props.userId,
+        bookId: selectedBook,
+      });
     }
   };
 
@@ -61,7 +67,8 @@ class Take extends Component {
           >
 		  {
 			books && books.map((book, index) =>
-			  <option value={book.bookId} disabled={book.userId == null}>{book.title} {book.userId !== null? ` (${book.firstName} ${book.lastName})` : ''}</option>
+        <option value={book.bookId} disabled={book.userId !== null} key={index}>
+          {book.title} {book.userId !== null? ` (${book.firstName} ${book.lastName})` : ''}</option>
 			)
 		  }            
           </select>
@@ -87,7 +94,6 @@ export default Take;
 
 const selectStyles = {
   display: "block",
-  width: "230px",
   margin: "40px auto",
   height: "40px",
   outline: "none"

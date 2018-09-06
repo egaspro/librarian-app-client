@@ -29,7 +29,10 @@ class Leave extends Component {
     const { selectedBook } = this.state;
 
     if (selectedBook) {
-      this.props.leaveBook(selectedBook);
+      this.props.leaveBook({
+        userId: this.props.userId,
+        bookId: selectedBook,
+      });
     }
   };
 
@@ -50,7 +53,7 @@ class Leave extends Component {
           >
             {
               takenBooks && takenBooks.map((book, index) =>
-                <option value={book.bookId}>{book.title} </option>
+                <option key={index} value={book.bookId}>{book.title} </option>
               )
             }
           </select>
@@ -76,7 +79,6 @@ export default Leave;
 
 const selectStyles = {
   display: "block",
-  width: "230px",
   margin: "40px auto",
   height: "40px",
   outline: "none"

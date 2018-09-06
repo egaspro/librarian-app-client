@@ -23,7 +23,10 @@ const takeBookEpic = (action$) =>
     action$.pipe(
         ofType(types.TAKE_BOOK_REQ),
         mergeMap((action) =>             
-            ajax.getJSON(`${apiUrl}transaction/takeBook`, {userId: action.payload.data }).pipe(
+            ajax.post(`${apiUrl}transaction/takeBook`, {
+                userId: action.payload.data.userId,
+                bookId: action.payload.data.bookId,
+            }).pipe(
                 map(response => actionCreators.takeBookResp())
             )             
         )
@@ -43,7 +46,10 @@ const leaveBookEpic = (action$) =>
     action$.pipe(
         ofType(types.LEAVE_BOOK_REQ),
         mergeMap((action) =>             
-            ajax.post(`${apiUrl}transaction/returnBook`, { bookId: action.payload.data }).pipe(
+            ajax.post(`${apiUrl}transaction/returnBook`, {
+                userId: action.payload.data.userId,
+                bookId: action.payload.data.bookId,
+            }).pipe(
                 map(response => actionCreators.leaveBookResp())
             )           
         )

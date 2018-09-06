@@ -53,7 +53,8 @@ export default function reducer(state = initialState, action) {
     case types.GET_USER_REQ:
       return {
         ...state,
-        loading: true
+        loading: true,
+        isValidated: false,
       };
     case types.GET_USER_RES:
       return {
