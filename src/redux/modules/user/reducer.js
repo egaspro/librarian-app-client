@@ -40,13 +40,14 @@ export default function reducer(state = initialState, action) {
                 isValidating: true,
                 recognitionTimerDone: true
 			};
-		case types.VALIDATE_USER_RES:
+        case types.VALIDATE_USER_RES:
+            console.log(action.payload.data.isValid);
 			return {
 				...state,
 				isValidating: false,
                 isError: null,
                 isValidated: true,
-                isLibraryCustomer: action.payload.data
+                isLibraryCustomer: action.payload.data.isValid
 			};
 		case types.VALIDATE_USER_ERR:
 			return {

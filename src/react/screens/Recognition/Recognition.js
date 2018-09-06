@@ -12,7 +12,8 @@ class Recognition extends Component {
     }
     
     componentWillReceiveProps(nextProps) {
-        if (nextProps.recognitionTimerDone) {
+        if (nextProps.recognitionTimerDone && !nextProps.isValidating) {
+            console.log(nextProps)
             this.props.validateUserReq(this.webcam.getScreenshot())
         }
         if (nextProps.isValidated) {
