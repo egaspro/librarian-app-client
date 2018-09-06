@@ -41,13 +41,13 @@ class Recognition extends Component {
       
 		return (
 			<div>
+                <img src="./WhoYouAre.jpeg" width="150" height="150" />
 				<h1> Who the hell are you ?!?!</h1>
-				<br/>
                 <h3>We will take your photo in: {this.props.recognitionTimerValue}</h3>
                 <div>
                 <Webcam         
                     audio={false}
-                    height={350}
+                    height={250}
                     ref={this.setRef}
                     screenshotFormat="image/jpeg"
                     width={350}

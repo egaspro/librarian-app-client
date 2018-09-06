@@ -32,6 +32,7 @@ class Leave extends Component {
 
     return (
       <div>
+        <img src="./Welcome.jpeg" width="200" height="200" />
         <h1> Welcome Petras Blieka </h1>
         <h2> Please select book(s) to leave </h2>
         <form action="" onSubmit={this.submitHandler}>

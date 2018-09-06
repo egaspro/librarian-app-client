@@ -11,6 +11,8 @@ class Take extends Component {
 
 		return (
 			<div>
+				<img src="./Welcome.jpeg" width="200" height="200" />
+				<img src="./YouHaveBooks.jpeg" width="200" height="200" />
 				<h1> Welcome Petras Blieka </h1>
 				<h2>These are the books available in Library</h2>
                 <div>Content to do</div>
