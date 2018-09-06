@@ -21,7 +21,8 @@ export default function reducer(state = initialState, action) {
 			return {
 				...state,
                 allBooks: action.payload.data,
-                inProgress: false
+                inProgress: false,
+                bookIsTaken: false
             };
         case types.ALL_BOOKS_ERR:
 			return {
@@ -33,7 +34,8 @@ export default function reducer(state = initialState, action) {
         case types.TAKE_BOOK_REQ:
 			return {
                 ...state,
-				inProgress: true
+                inProgress: true,
+                bookIsTaken: false
             };
         case types.TAKE_BOOK_RES:
 			return {
@@ -51,7 +53,8 @@ export default function reducer(state = initialState, action) {
         case types.TAKEN_BOOKS_REQ:
 			return {
 				...state,
-				inProgress: true
+                inProgress: true,
+                bookIsLeft: false
             };
         case types.TAKEN_BOOKS_RES:
 			return {
@@ -69,7 +72,8 @@ export default function reducer(state = initialState, action) {
         case types.LEAVE_BOOK_REQ:
 			return {
 				...state,
-				inProgress: true
+                inProgress: true,
+                bookIsLeft: false
             };
         case types.LEAVE_BOOK_RES:
 			return {
