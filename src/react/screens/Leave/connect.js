@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
   userId: state.user.userId,
   firstName: state.user.firstName,
   lastName: state.user.lastName,
-  takenBooks: state.books.takenBooks
+  takenBooks: state.books.takenBooks,
+  bookIsLeft: state.books.bookIsLeft
 });
 
 const mapDispatchToProps = dispatch =>
