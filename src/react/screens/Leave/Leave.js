@@ -22,7 +22,11 @@ class Leave extends Component {
 
     if (selectedBook) {
       console.log(selectedBook);
-      this.setState({ success: true });
+      this.setState({ success: true }, () => {
+        setTimeout(() => {
+          this.props.history.push("/");
+        }, 1000);
+      });
     }
   };
 
